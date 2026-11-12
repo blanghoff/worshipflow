@@ -6,3 +6,5 @@ TestMedia/*.mp4
 TestMedia/*.png
 .env
 .env.*
+
+dist/
