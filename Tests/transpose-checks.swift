@@ -1,0 +1,7 @@
+precondition(ChordLines.transpose("C G/B Am7 F#dim", by: 2) == "D A/C# Bm7 G#dim")
+precondition(ChordLines.transpose("  C       G/B", by: 1) == "  C#      G#/C")
+precondition(ChordLines.transpose("C G/B", by: -2, flats: true) == "Bb F/A")
+precondition(ChordLines.transpose("Cmaj7 Dsus4 N.C.", by: 12) == "Cmaj7 Dsus4 N.C.")
+precondition(ChordLines.transpose("A sample lyric", by: 2) == "A sample lyric")
+precondition(ChordLines.transpose("Bb Eb/G", by: 2, flats: true) == "C  F/A")
+print("Transposition checks passed")

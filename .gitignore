@@ -1,0 +1,8 @@
+.DS_Store
+.build/
+.swiftpm/
+*.app/
+TestMedia/*.mp4
+TestMedia/*.png
+.env
+.env.*
