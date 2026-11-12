@@ -1,5 +1,11 @@
 name: macOS release
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag
+        required: true
+        default: v0.1.2
   push:
     tags: ['v*']
 permissions:
@@ -7,8 +13,12 @@ permissions:
 jobs:
   release:
     runs-on: macos-14
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
       - name: Check parsers
         run: |
           ./Tests/check-parser.sh
@@ -19,7 +29,7 @@ jobs:
           codesign --force --deep --sign - WorshipFlow.app
           codesign --verify --deep --strict WorshipFlow.app
           mkdir -p dist
-          ARCHIVE="WorshipFlow-${GITHUB_REF_NAME#v}-macOS-AppleSilicon.zip"
+          ARCHIVE="WorshipFlow-${RELEASE_TAG#v}-macOS-AppleSilicon.zip"
           ditto -c -k --sequesterRsrc --keepParent WorshipFlow.app "dist/$ARCHIVE"
           cd dist
           shasum -a 256 "$ARCHIVE" > SHA256SUMS.txt
@@ -27,4 +37,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/*.zip dist/SHA256SUMS.txt --title "WorshipFlow ${GITHUB_REF_NAME#v} — macOS Preview" --notes-file RELEASE_NOTES.md --prerelease --verify-tag
+          gh release create "$RELEASE_TAG" dist/*.zip dist/SHA256SUMS.txt --title "WorshipFlow ${RELEASE_TAG#v} — macOS Preview" --notes-file RELEASE_NOTES.md --prerelease --verify-tag
