@@ -1,7 +1,7 @@
 Native macOS worship lyrics presentation app with song editing, Genius/Ultimate Guitar imports, chord transposition, dual-display presentation, animated and custom video backgrounds, and Apple Music controls.
 
 ### Download and install
-- Download **WorshipFlow-0.1.2-macOS-AppleSilicon.zip** below (not the source-code archives).
+- Download **WorshipFlow-0.1.3-macOS-AppleSilicon.zip** below (not the source-code archives).
 - Requires an **Apple Silicon Mac (M1 or newer)** running **macOS 13 or later**. Intel Macs are not supported by this build.
 - Unzip, quit any running copy, then drag WorshipFlow.app into Applications. Replace the existing copy to update. Saved songs and backgrounds remain in Application Support.
 - This preview is ad-hoc signed, **not Developer ID–signed or notarized**. macOS may block first launch. After attempting to open it, use System Settings → Privacy & Security → Open Anyway if you trust this release.
